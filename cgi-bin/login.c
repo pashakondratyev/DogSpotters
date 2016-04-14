@@ -7,6 +7,10 @@
 #define VARLEN 8
 #include <string.h>
 
+char file_username[MAXLEN];
+char file_password[MAXLEN];
+char file_fullname[MAXLEN];
+char file_jobthing[MAXLEN];
 
 void unencode(char *src, char *last, char *dest)
 {
@@ -33,28 +37,40 @@ int validate_credentials(char*username, char*password){
 	printf("<p>HERE</p>");
 	//Add a check statement to see if there is anything in the file
 	//ie fgets returns a null at the beginning
-	char* current_line;
-//	char* file_username = fgets(current_line, MAXLEN, fpointer);
-//	printf("<p>Current line: %s</p>", current_line);
-//	char* file_password = fgets(current_line, MAXLEN, fpointer);
-//	char* file_fullname = fgets(current_line, MAXLEN, fpointer);
-//	char* file_jobthing = fgets(current_line, MAXLEN, fpointer);
-	printf("<p>Not the pointers</p>");
+	fgets(file_username, MAXLEN, fpointer);
+	fgets(file_password, MAXLEN, fpointer);
+	fgets(file_fullname, MAXLEN, fpointer);
+	fgets(file_jobthing, MAXLEN, fpointer);
 
-/*	while(current_line != NULL){
+/*	Stuff inside while */
+	printf("%s %s", username, file_username);
+		printf("%s %s", password, file_password);
+		if(strcmp(username, file_username) == 0 && 
+		   strcmp(password, file_password) == 0){
+			fclose(fpointer);
+			return 1;
+		}
+	while(feof(fpointer) != 0){
+		printf("%s %s", username, file_username);
+		printf("%s %s", password, file_password);
 		if(strcmp(username, file_username) == 0 && 
 		   strcmp(password, file_password) == 0){
 			fclose(fpointer);
 			return 1;
 		}
 		else{
-			file_username = fgets(current_line, MAXLEN, fpointer);
-			file_password = fgets(current_line, MAXLEN, fpointer);
-			file_fullname = fgets(current_line, MAXLEN, fpointer);
-			file_jobthing = fgets(current_line, MAXLEN, fpointer);
+		//Make sure there is a next line
+/*			char temp_line[MAXLEN];
+			for(int i=0; i< 4; i++){
+				if(fscanf(fpointer, "%s", temp_line) == 0)break;
+			}
+*/			fgets(file_username, MAXLEN, fpointer);
+			fgets(file_password, MAXLEN, fpointer);
+			fgets(file_fullname, MAXLEN, fpointer);
+			fgets(file_jobthing, MAXLEN, fpointer);
 		}
 	}
-*/	
+	
 	fclose(fpointer);
 	return 0;
 

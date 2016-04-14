@@ -30,24 +30,31 @@ int validate_credentials(char*username, char*password){
 	if(fpointer == NULL){
 		printf("<p>ERROR: users.txt failed to open</p>");
 	}
+	printf("<p>HERE</p>");
+	//Add a check statement to see if there is anything in the file
+	//ie fgets returns a null at the beginning
 	char* current_line;
-	char* file_username = fgets(current_line, MAXLEN, fpointer);
-	char* file_password = fgets(current_line, MAXLEN, fpointer);
-	char* file_fullname = fgets(current_line, MAXLEN, fpointer);
-	char* file_jobthing = fgets(current_line, MAXLEN, fpointer);
-	while(current_line != NULL){
+//	char* file_username = fgets(current_line, MAXLEN, fpointer);
+//	printf("<p>Current line: %s</p>", current_line);
+//	char* file_password = fgets(current_line, MAXLEN, fpointer);
+//	char* file_fullname = fgets(current_line, MAXLEN, fpointer);
+//	char* file_jobthing = fgets(current_line, MAXLEN, fpointer);
+	printf("<p>Not the pointers</p>");
+
+/*	while(current_line != NULL){
 		if(strcmp(username, file_username) == 0 && 
 		   strcmp(password, file_password) == 0){
 			fclose(fpointer);
 			return 1;
 		}
 		else{
-			char* file_username = fgets(current_line, MAXLEN, fpointer);
-			char* file_password = fgets(current_line, MAXLEN, fpointer);
-			char* file_fullname = fgets(current_line, MAXLEN, fpointer);
-			char* file_jobthing = fgets(current_line, MAXLEN, fpointer);
+			file_username = fgets(current_line, MAXLEN, fpointer);
+			file_password = fgets(current_line, MAXLEN, fpointer);
+			file_fullname = fgets(current_line, MAXLEN, fpointer);
+			file_jobthing = fgets(current_line, MAXLEN, fpointer);
 		}
 	}
+*/	
 	fclose(fpointer);
 	return 0;
 
@@ -76,6 +83,7 @@ int main(){
 /*	Check the users.txt for the username and password	*/	
 	 
 	if(validate_credentials(username, password) == 0){
+		printf("<title>ERROR</title>");
 		printf("<p>Username or password is wrong/doesn't exist</p>");
 	}
 	else{

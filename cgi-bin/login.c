@@ -34,42 +34,29 @@ int validate_credentials(char*username, char*password){
 	if(fpointer == NULL){
 		printf("<p>ERROR: users.txt failed to open</p>");
 	}
-	printf("<p>HERE</p>");
-	//Add a check statement to see if there is anything in the file
-	//ie fgets returns a null at the beginning
-	fgets(file_username, MAXLEN, fpointer);
-	fgets(file_password, MAXLEN, fpointer);
-	fgets(file_fullname, MAXLEN, fpointer);
-	fgets(file_jobthing, MAXLEN, fpointer);
 
-/*	Stuff inside while */
-	printf("%s %s", username, file_username);
-		printf("%s %s", password, file_password);
+	int counter = 0;
+	do{
+		fgets(file_username, MAXLEN, fpointer);
+		printf("<p>%s %s</p>", username, file_username);
+		fgets(file_password, MAXLEN, fpointer);
+		printf("<p>%s %s</p>", password, file_password);
+		printf("<p>Loops: %d</p>", counter);	
+
 		if(strcmp(username, file_username) == 0 && 
 		   strcmp(password, file_password) == 0){
 			fclose(fpointer);
 			return 1;
 		}
-	while(feof(fpointer) != 0){
-		printf("%s %s", username, file_username);
-		printf("%s %s", password, file_password);
-		if(strcmp(username, file_username) == 0 && 
-		   strcmp(password, file_password) == 0){
-			fclose(fpointer);
-			return 1;
-		}
-		else{
-		//Make sure there is a next line
-/*			char temp_line[MAXLEN];
-			for(int i=0; i< 4; i++){
-				if(fscanf(fpointer, "%s", temp_line) == 0)break;
-			}
-*/			fgets(file_username, MAXLEN, fpointer);
+		fgets(file_fullname, MAXLEN, fpointer);
+		fgets(file_jobthing, MAXLEN, fpointer);
+	
+/*			fgets(file_username, MAXLEN, fpointer);
 			fgets(file_password, MAXLEN, fpointer);
 			fgets(file_fullname, MAXLEN, fpointer);
 			fgets(file_jobthing, MAXLEN, fpointer);
-		}
-	}
+*/		counter++;	
+	}while(feof(fpointer) == 0);
 	
 	fclose(fpointer);
 	return 0;
@@ -104,9 +91,7 @@ int main(){
 	}
 	else{
 		printf("<title>Response</title>");
-		printf("<p>input: %s</p>", input);
-		printf("<p>username: %s</p>",username);
-		printf("<p>password: %s</p>",password);
+		printf("<p>Login Successful</p>");
 		printf("</body>\n</html>");
 	}
 }

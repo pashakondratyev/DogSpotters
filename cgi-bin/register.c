@@ -21,7 +21,7 @@ int validateUsername(char *name){
 	char *fullName = fgets(currentLine, MAXLEN, f);
 	char *jobDescription = fgets(currentLine, MAXLEN, f);
 	while(currentLine != NULL){
-		if(strncmp(name, username) ){
+		if(strcmp(name, username) == 0 ){
 			fclose(f); 
 			return 1;
 		}

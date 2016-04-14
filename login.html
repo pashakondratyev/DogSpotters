@@ -14,16 +14,18 @@
 <tr/>
 <tr>
         <td>
-	<form name="login" action="login.c" method="post">
+	<form name="login" action="cgi-bin/login.cgi" method="post">
         Username:<br>
         <input type="text" name="username"><br>
         Password:<br>
         <input type="password" name="password"><br>
+	</br>
+	<input type="submit" value="Login">
         </form>
         </td>
 
         <td>
-        <form name="register" action="register.c" method="post">
+        <form name="register" action="cgi-bin/register.cgi" method="post">
         Username:<br>
         <input type="text" name="username"><br>
         Password:<br>
@@ -34,6 +36,7 @@
         <input type="text" name="jobdescription"><br>
         </form>
 </tr>
+<!--
 <tr>
         <td>
         <button type="button">
@@ -46,6 +49,7 @@
         </button>
         </td>
 </tr>
+-->
 </table>
 </body>
 <style>

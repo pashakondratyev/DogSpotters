@@ -1,27 +1,45 @@
 /*generate profile*/
 #include <stdlib.h>
 #include <stdio.h>
-int main (int argc,char *username){
+#include<string.h>
+int searchForUser (char *user){
 
 /* need to display:
->username
->fullname
->fav dog*/
+>username :every 1st line
+>fullname : every 3rd line
+>fav dog  :every 4th line*/
 /*needs to read username and generate a profile accordingly
  these are random profiles i guess
 */
+char temp[500];
+char line[500];
+char *name;
+char *dog;
+int numline, count, linename, linedog;
 
-
-char *firstname[10];
-char *lastname[10];
-char *dog[10];
-
-firstname[]={Rosa,Darrell,Barden,Deeb,Augustus,Mary,Jane,Alec,Park,Jack};
-lastname[]={Flannery,Rude,Hansford,Grogg,Callejas,Rivers,Anaya,Mcvea,Gordan,Barboza};
-dog[]={Akita,Basset,Basenji,Chihuahua,Collie,Dachsund,Dalmation,Whippet,Husky,Pug};
-
-int n= rand()%10;
-prinf("%s\n %s %s\n %s\n", username, firstname[n], lastname[n],dog[n]);
+FILE *users; 
+fopen("users.txt", "r");
+while(fgets(temp,500,users) != NULL){
+	if((strstr(temp,user)) != NULL) {
+		linename=numline+2;
+		linedog=numline+3;
+		break;
+	}
+	numline++;
+}
+while(fgets(line,sizeof(line),users) != NULL){
+	if(count==numline){
+		printf("Username: %s \n",line);
+	}
+ 	if(count==linename){
+		printf("Name: %s \n", line);
+        }
+ 	if(count==linedog){
+		printf("Favorite Dog: %s \n",ling);
+        }
+	count++;
+}
+fclose(users);
 
 return 0;
 }

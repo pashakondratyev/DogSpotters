@@ -6,7 +6,7 @@
 char file_username[MAXLEN];
 char file_password[MAXLEN];
 char file_fullname[MAXLEN];
-char file_jobthing[MAXLEN];
+char file_favoritedog[MAXLEN];
 
 /*validateUsername
  *Takes a *char name
@@ -28,7 +28,7 @@ int validate_username(char*username){
 		}
 		fgets(file_password, MAXLEN, fpointer);
 		fgets(file_fullname, MAXLEN, fpointer);
-		fgets(file_jobthing, MAXLEN, fpointer);
+		fgets(file_favoritedog, MAXLEN, fpointer);
 	}while(feof(fpointer) == 0);
 	
 	fclose(fpointer);
@@ -38,11 +38,11 @@ int validate_username(char*username){
 /*registerUser
  *appends the user's information to the end of the users.txt file
  */
-void registerUser(char *name, char *password, char *jobDescription, char *fullName){
+void registerUser(char *name, char *password, char *favoritedog, char *fullName){
 	FILE *f = fopen(USERFILE, "a");
 	fputs(name, f);
 	fputs(password, f);
-	fputs(jobDescription, f);
+	fputs(favoritedog, f);
 	fputs(fullName, f);
 	fclose(f);
 	//Should print a confirmation
@@ -51,13 +51,13 @@ int main(){
 	
 	int n = atoi(getenv("CONTENT_LENGTH"));
 	char input[MAXINPUT];
-	char username[MAXLEN], password[MAXLEN], fullname[MAXLEN], jobdescription[MAXLEN];
+	char username[MAXLEN], password[MAXLEN], fullname[MAXLEN], favoritedog[MAXLEN];
 	fgets(input, n+1, stdin);
-	sscanf(input, "username=%[^&]&password=%[^&]&fullname=%[^&]&jobdescription=%s", username, password, fullname, jobdescription);
+	sscanf(input, "username=%[^&]&password=%[^&]&fullname=%[^&]&favoritedog=%s", username, password, fullname, favoritedog);
 	unencode(password, password + strlen(password), password);
 	unencode(username, username + strlen(username), username);
 	unencode(fullname, fullname + strlen(fullname), fullname);
-	unencode(jobdescription, jobdescription + strlen(jobdescription), jobdescription);	
+	unencode(favoritedog, favoritedog + strlen(favoritedog), favoritedog);	
 	/*	Here we have the username and password variables	*/
 	
 	printf("Content-type: text/html\n\n");
@@ -77,7 +77,7 @@ int main(){
 		}
 	}
 	else{
-		registerUser(username, password, jobdescription, fullname);
+		registerUser(username, password, favoritedog, fullname);
 		FILE *f;
 		f=fopen("../register-success.html", "r");
 		if(f == NULL){

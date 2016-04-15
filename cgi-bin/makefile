@@ -4,6 +4,9 @@ all :
 	chmod 755 *
 	chmod 755 ../*
 
+profile.cgi : profile.c
+	gcc -g -o profile.cgi profile.c
+
 login.cgi : login.c
 	gcc -g -o login.cgi login.c
 

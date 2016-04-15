@@ -17,9 +17,9 @@ int validate_credentials(char*username, char*password){
 	}
 	do{
 		fgets(file_username, MAXLEN, fpointer);
-		printf("<p>%s %s</p>", username, file_username);
+//		printf("<p>%s %s</p>", username, file_username);
 		fgets(file_password, MAXLEN, fpointer);
-		printf("<p>%s %s</p>", password, file_password);
+//		printf("<p>%s %s</p>", password, file_password);
 
 		if(strcmp(username, file_username) == 0 && 
 		   strcmp(password, file_password) == 0){
@@ -47,18 +47,30 @@ int main(){
 	char username[MAXLEN], password[MAXLEN];
 	fgets(input, n+1, stdin);
 	sscanf(input, "username=%[^&]&password=%s", username, password);
-	char *password_var = strstr(username, "&password=");
+//	char *password_var = strstr(username, "&password=");
 	unencode(password, password + strlen(password), password);
 	unencode(username, username + strlen(username), username);
 /*	Here we have the username and password variables	*/
 	
 	printf("Content-type: text/html\n\n");
-	printf("<html>\n<body>");
+//	printf("<html>\n<body>");
 /*	Check the users.txt for the username and password	*/	
 	 
 	if(validate_credentials(username, password) == 0){
-		printf("<title>ERROR</title>");
+	/*	printf("<title>ERROR</title>");
 		printf("<p>Username or password is wrong/doesn't exist</p>");
+	*/	//Load the login-error.html file
+		FILE *f;
+		f = fopen("../login-error.html", "r");
+		if(f == NULL){
+			printf("error opening error file");
+		}
+		char c;
+		c = fgetc(f);
+		while(feof(f) == 0){
+			printf("%c",c);
+			c = fgetc(f);
+		}
 	}
 	else{
 		printf("<title>Response</title>");

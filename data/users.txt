@@ -1,20 +1,16 @@
+doggodenis
 luca
+chris
 denis
-full name
-job thing
-secondname
-secondword
-Bob Smith
-coder
-paul
+doggopaul
 pass
-=hacker
-Pavel
-doggo
-123
-=123
-123
-doggo2
-123
-=123
-123
+name
+dog
+paul
+paul
+paul
+Paul
+denis
+denis
+denis
+denis

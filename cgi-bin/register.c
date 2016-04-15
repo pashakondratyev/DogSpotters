@@ -53,7 +53,7 @@ int main(){
 	char input[MAXINPUT];
 	char username[MAXLEN], password[MAXLEN], fullname[MAXLEN], jobdescription[MAXLEN];
 	fgets(input, n+1, stdin);
-	sscanf(input, "username=%[^&]&password=%[^&]&fullname=%[^&]&jobdescription%s", username, password, fullname, jobdescription);
+	sscanf(input, "username=%[^&]&password=%[^&]&fullname=%[^&]&jobdescription=%s", username, password, fullname, jobdescription);
 	unencode(password, password + strlen(password), password);
 	unencode(username, username + strlen(username), username);
 	unencode(fullname, fullname + strlen(fullname), fullname);

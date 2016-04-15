@@ -22,7 +22,6 @@ int validate_username(char*username){
 	}
 	do{
 		fgets(file_username, MAXLEN, fpointer);
-		printf("<p>%s %s</p>", username, file_username);
 		if(strcmp(username, file_username) == 0){
 			fclose(fpointer);
 			return 1;
@@ -62,17 +61,33 @@ int main(){
 	/*	Here we have the username and password variables	*/
 	
 	printf("Content-type: text/html\n\n");
-	printf("<html>\n<body>");
 /*	Check the users.txt for the username and password	*/	
 	 
 	if(validate_username(username) == 1){
-		printf("<title>ERROR</title>");
-		printf("<p>Username already exists, please create a unique username!</p>");
+		FILE *f;
+		f=fopen("../register-error.html", "r");
+		if(f == NULL){
+			printf("<p>Error opening the error file</p>");
+		}
+		char c;
+		c=fgetc(f);
+		while(feof(f) == 0){
+			printf("%c",c);
+			c= fgetc(f);
+		}
 	}
 	else{
 		registerUser(username, password, jobdescription, fullname);
-		printf("<title>Response</title>");
-		printf("<p>Registration successful</p>");
-		printf("</body>\n</html>");
+		FILE *f;
+		f=fopen("../register-success.html", "r");
+		if(f == NULL){
+			printf("<p>Error opening the error file</p>");
+		}
+		char c;
+		c=fgetc(f);
+		while(feof(f) == 0){
+			printf("%c",c);
+			c= fgetc(f);
+		}
 	}
 }

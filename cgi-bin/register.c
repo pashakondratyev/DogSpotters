@@ -42,8 +42,8 @@ void registerUser(char *name, char *password, char *favoritedog, char *fullName)
 	FILE *f = fopen(USERFILE, "a");
 	fputs(name, f);
 	fputs(password, f);
-	fputs(favoritedog, f);
 	fputs(fullName, f);
+	fputs(favoritedog, f);
 	fclose(f);
 	//Should print a confirmation
 	FILE *friends = fopen(FRIENDFILE, "a");

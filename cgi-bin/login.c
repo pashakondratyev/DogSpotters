@@ -6,7 +6,7 @@
 char file_username[MAXLEN];
 char file_password[MAXLEN];
 char file_fullname[MAXLEN];
-char file_jobthing[MAXLEN];
+char file_favoritedog[MAXLEN];
 
 /* 	scan users.txt to search for username and password	*/
 int validate_credentials(char*username, char*password){
@@ -25,7 +25,7 @@ int validate_credentials(char*username, char*password){
 			return 1;
 		}
 		fgets(file_fullname, MAXLEN, fpointer);
-		fgets(file_jobthing, MAXLEN, fpointer);
+		fgets(file_favoritedog, MAXLEN, fpointer);
 	}while(feof(fpointer) == 0);
 	
 	fclose(fpointer);

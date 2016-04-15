@@ -46,7 +46,11 @@ void registerUser(char *name, char *password, char *favoritedog, char *fullName)
 	fputs(fullName, f);
 	fclose(f);
 	//Should print a confirmation
+	FILE *friends = fopen(FRIENDFILE, "a");
+	fputs(name, f);
+	fclose(f);
 }
+
 int main(){
 	
 	int n = atoi(getenv("CONTENT_LENGTH"));

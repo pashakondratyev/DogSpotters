@@ -66,7 +66,7 @@ int main(){
 		}
 	}
 	else{
-		FILE *f;
+/*		FILE *f;
 		f = fopen("../dashboard.html", "r");
 		if(f == NULL){
 			printf("error opening dashboard file");
@@ -76,6 +76,14 @@ int main(){
 		while(feof(f) == 0){
 			printf("%c",c);
 			c = fgetc(f);
+		}
+*/		int pid = fork();
+		if( pid == 0 ){
+			// child process
+			system("python dashboard.py");
+		}
+		else{
+			return EXIT_SUCCESS;
 		}
 	}
 

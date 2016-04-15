@@ -1,7 +1,7 @@
 /*generate profile*/
 #include <stdlib.h>
 #include <stdio.h>
-int main (int argc){
+int main (int argc,char *username){
 
 /* need to display:
 >username
@@ -23,5 +23,5 @@ dog[]={Akita,Basset,Basenji,Chihuahua,Collie,Dachsund,Dalmation,Whippet,Husky,Pu
 int n= rand()%10;
 prinf("%s\n %s %s\n %s\n", username, firstname[n], lastname[n],dog[n]);
 
-
+return 0;
 }

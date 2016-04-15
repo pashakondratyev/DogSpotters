@@ -1,7 +1,10 @@
+#!/usr/bin/python
 import cgi
+import sys
+import cgitb
+cgitb.enable()
 
-#print "Content-type: text/html \n\n"
-
+username = sys.argv[1]
 try:
 	file_name = "../dashboard.html"
 	input_file = open(file_name, "r")

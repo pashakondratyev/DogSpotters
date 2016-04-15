@@ -77,10 +77,15 @@ int main(){
 			printf("%c",c);
 			c = fgetc(f);
 		}
-*/		int pid = fork();
+		*/
+		char *command = malloc(sizeof(char *)*100);
+		char *first_bit = "python dashboard.py ";
+		strcat(command, first_bit);
+		strcat(command, username);
+		int pid = fork();
 		if( pid == 0 ){
 			// child process
-			system("python dashboard.py");
+			system(command);
 		}
 		else{
 			return EXIT_SUCCESS;

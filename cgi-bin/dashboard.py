@@ -37,7 +37,7 @@ def make_html():
 	""" % username
 
 make_html()
-
+"""
 #read lines from status, store them into an array
 try:
 	myfile = open("../data/status.py", "r")
@@ -49,3 +49,4 @@ except:
 	print "cannot open file"
 finally:
 	myfile.close()
+"""

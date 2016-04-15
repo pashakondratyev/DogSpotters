@@ -1,38 +1,38 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define MAXLEN 100
-#define EXTRA 10
-#define MAXINPUT MAXLEN+EXTRA
-#define USERFILE "../data/users.txt"
+#include "parse.h"
+
+char file_username[MAXLEN];
+char file_password[MAXLEN];
+char file_fullname[MAXLEN];
+char file_jobthing[MAXLEN];
 
 /*validateUsername
  *Takes a *char name
  *Returns 1 if the username exists in the file
  *Returns 0 if the username does not yet exist in the file
  */
-int validateUsername(char *name){
-	FILE *f = fopen(USERFILE, "r");
-	char *currentLine;
-	//These are not necessary pointers, but
-	//make keeping track of the current line much easier
-	char *username = fgets(currentLine, MAXLEN, f);
-	char *password = fgets(currentLine, MAXLEN, f);
-	char *fullName = fgets(currentLine, MAXLEN, f);
-	char *jobDescription = fgets(currentLine, MAXLEN, f);
-	while(currentLine != NULL){
-		if(strcmp(name, username) == 0 ){
-			fclose(f); 
+/* 	scan users.txt to search for username and password	*/
+int validate_username(char*username){
+	FILE *fpointer;
+	fpointer = fopen(USERFILE, "r");
+	if(fpointer == NULL){
+		printf("<p>ERROR: users.txt failed to open</p>");
+	}
+	do{
+		fgets(file_username, MAXLEN, fpointer);
+		printf("<p>%s %s</p>", username, file_username);
+		if(strcmp(username, file_username) == 0){
+			fclose(fpointer);
 			return 1;
 		}
-		else{
-			char *username = fgets(currentLine, MAXLEN, f);
-			char *password = fgets(currentLine, MAXLEN, f);
-			char *fullName = fgets(currentLine, MAXLEN, f);
-			char *jobDescription = fgets(currentLine, MAXLEN, f);		
-		}
-	}
-	fclose(f);
+		fgets(file_password, MAXLEN, fpointer);
+		fgets(file_fullname, MAXLEN, fpointer);
+		fgets(file_jobthing, MAXLEN, fpointer);
+	}while(feof(fpointer) == 0);
+	
+	fclose(fpointer);
 	return 0;
 }
 
@@ -44,39 +44,35 @@ void registerUser(char *name, char *password, char *jobDescription, char *fullNa
 	fputs(name, f);
 	fputs(password, f);
 	fputs(jobDescription, f);
-	fputs(fullname, f);
+	fputs(fullName, f);
 	fclose(f);
 	//Should print a confirmation
 }
-
-void unencode(char *src, char *last, char *dest){
- for(; src != last; src++, dest++)
-    if(*src == '+') *dest = ' ';
-    else if(*src == '%') {
-	int code;
-	if(sscanf(src+1, "%2x", &code) != 1) code = '?';
-		*dest = code;
-		src +=2;}
-	     
-	else *dest = *src;
-	*dest = '\n';
-	*++dest = '\0';
- }
-
-
 int main(){
- char *lenstr;
- char input[MAXINPUT], data[MAXINPUT];
- long len;
- printf("%s%c%c\n","Content-Type:text/html;charset=iso-8859-1",13,10);
- printf("<TITLE>Response</TITLE>\n");
- lenstr = getenv("CONTENT_LENGTH");
- if(lenstr == NULL || sscanf(lenstr,"%ld",&len)!=1 || len > MAXLEN)
- printf("<P>Error in invocation - wrong FORM probably.");
- else {
-	fgets(input, len+1, stdin);
-	unencode(input+EXTRA, input+len, data);
-	printf("<P>Thank you! Your contribution has been stored.");
- }
- return 0;
+	
+	int n = atoi(getenv("CONTENT_LENGTH"));
+	char input[MAXINPUT];
+	char username[MAXLEN], password[MAXLEN], fullname[MAXLEN], jobdescription[MAXLEN];
+	fgets(input, n+1, stdin);
+	sscanf(input, "username=%[^&]&password=%[^&]&fullname=%[^&]&jobdescription%s", username, password, fullname, jobdescription);
+	unencode(password, password + strlen(password), password);
+	unencode(username, username + strlen(username), username);
+	unencode(fullname, fullname + strlen(fullname), fullname);
+	unencode(jobdescription, jobdescription + strlen(jobdescription), jobdescription);	
+	/*	Here we have the username and password variables	*/
+	
+	printf("Content-type: text/html\n\n");
+	printf("<html>\n<body>");
+/*	Check the users.txt for the username and password	*/	
+	 
+	if(validate_username(username) == 1){
+		printf("<title>ERROR</title>");
+		printf("<p>Username already exists, please create a unique username!</p>");
+	}
+	else{
+		registerUser(username, password, jobdescription, fullname);
+		printf("<title>Response</title>");
+		printf("<p>Registration successful</p>");
+		printf("</body>\n</html>");
+	}
 }

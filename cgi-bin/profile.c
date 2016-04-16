@@ -1,45 +1,44 @@
 /*generate profile*/
 #include <stdlib.h>
 #include <stdio.h>
-#include<string.h>
+#include <string.h>
+#include "parse.h"
+
+char file_username[MAXLEN];
+char file_password[MAXLEN];
+char file_fullname[MAXLEN];
+char file_favoritedog[MAXLEN];
+
 int searchForUser (char *user){
+	/* need to display:
+	>username :every 1st line
+	>fullname : every 3rd line
+	>fav dog  :every 4th line*/
 
-/* need to display:
->username :every 1st line
->fullname : every 3rd line
->fav dog  :every 4th line*/
-/*needs to read username and generate a profile accordingly
- these are random profiles i guess
-*/
-char temp[500];
-char line[500];
-char *name;
-char *dog;
-int numline, count, linename, linedog;
-
-FILE *users; 
-fopen("users.txt", "r");
-while(fgets(temp,500,users) != NULL){
-	if((strstr(temp,user)) != NULL) {
-		linename=numline+2;
-		linedog=numline+3;
-		break;
+	FILE *users;
+	char username[MAXLEN];
+	strcat(username, user);
+	users = fopen(USERFILE, "r");
+	if(users == NULL){
+		printf("<p>ERROR: users.txt failed to open</p>");
 	}
-	numline++;
+	do{
+		fgets(file_username, MAXLEN, users);
+		fgets(file_password, MAXLEN, users);
+		fgets(file_fullname, MAXLEN, users);
+		fgets(file_favoritedog, MAXLEN, users);
+		
+		if(strncmp(user, file_username, strlen(user)) == 0){
+			fclose(users);
+			printf("Username: %s \n",file_username);
+			printf("Name: %s \n", file_fullname);
+			printf("Favorite Dog: %s \n", file_favoritedog);
+			return 1;
+		}		
+	}while(feof(users) == 0);	
+	fclose(users);
+	return 0;
 }
-while(fgets(line,sizeof(line),users) != NULL){
-	if(count==numline){
-		printf("Username: %s \n",line);
-	}
- 	if(count==linename){
-		printf("Name: %s \n", line);
-        }
- 	if(count==linedog){
-		printf("Favorite Dog: %s \n",ling);
-        }
-	count++;
-}
-fclose(users);
-
-return 0;
-}
+/*int main(){
+	searchForUser("wizard");
+}*/

@@ -14,6 +14,8 @@ int listFriends(char* name){
 	char tempString[MAXLEN*100];
 	char *userName;
 	char *tempName;
+	printf("<html><title>Choose a friend to visit</title><body>");
+	printf("<h1>Choose a friend</h1>");
 	printf("<form action=\"profile.cgi\" method=\"post\"><table>");
 	do{
 		fgets(tempString, MAXLEN * 100, fpointer);
@@ -35,11 +37,19 @@ int main(){
 	int n = atoi(getenv("CONTENT_LENGTH"));
 	char input[MAXINPUT];
 	char username[MAXLEN];
+	char username2[MAXLEN];
 	fgets(input, n+1, stdin);
 	sscanf(input, "username=%[^&]", username);
+	strcpy(username2,username);		
 	unencode(username, username + strlen(username), username);
 	printf("content-type: text/html\n\n");
 	printf("<!Doctype html>");
 	listFriends(username);
+	printf("<form action=\"dashboard.py\" method=\"post\">");
+	printf("<input type=\"hidden\" name=\"username\" value=\"%s\"></input>",username2);
+	printf("<input type=\"submit\" value=\"Go back to the dashboard!\"></input>");
+	printf("</form>");
+	printf("</body>");
+	printf("</html>");
 	return 0;
 }

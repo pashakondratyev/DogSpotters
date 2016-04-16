@@ -29,7 +29,7 @@ def make_html():
 		</form>
 		</li>
 		<li>
-		<form action="seefriends.c" method="post">
+		<form action="seefriends.cgi" method="post">
 			<input type="hidden" name="username" value = %s></input><input type="submit" value="see a friend"</input>
 		</form>
 		</li>

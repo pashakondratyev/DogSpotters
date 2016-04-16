@@ -25,12 +25,12 @@ def make_html():
 		<li><a href="../index.html">logout</a></li>
 		<li>
 		<form action="makefriends.py" method="post">
-			<input type="hidden" name="username" value = %s></input><input type="submit" value="make a friend"</input>
+			<input type="hidden" name="username" value ="%s"></input><input type="submit" value="make a friend"</input>
 		</form>
 		</li>
 		<li>
-		<form action="seefriends.cgi" method="post">
-			<input type="hidden" name="username" value = %s></input><input type="submit" value="see a friend"</input>
+		<form action="./seefriends.cgi" method="post">
+			<input type="hidden" name="username" value ="%s"></input><input type="submit" value="see a friend"</input>
 		</form>
 		</li>
 

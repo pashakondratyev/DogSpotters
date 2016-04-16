@@ -14,7 +14,7 @@ login.cgi : login.c parse.h
 register.cgi : register.c parse.h
 	gcc -g -o register.cgi register.c
 
-seefriends.cgi : seefriends.c
+seefriends.cgi : seefriends.c parse.h
 	gcc -g -o seefriends.cgi seefriends.c
 
 cleanFiles : 

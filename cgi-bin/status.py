@@ -18,11 +18,11 @@ if not form["status"].value:
 else:
 	#append status to status.txt
 #	print "<h4>something to show</h4>"
-	print "<p>User: %s</p>" % form["username"].value
-	print "<p>Status: %s</p>" % form["status"].value
+	print "<p>User: %s</p>" % form.getvalue("username")
+	print "<p>Status: %s</p>" % form.getvalue("status")
 	try:
 		myfile = open("../data/status.txt", "a+")
-		myfile.write("%s %s" % (form["username"].value, form["status"].value))
+		myfile.write("%s %s\n" % (form.getvalue("username"), form.getvalue("status")))
 	except IOError:
 		print "<p>Error opening file</p>"
 	except:
@@ -30,3 +30,9 @@ else:
 	finally:
 		myfile.close()
 	#go back to dashboard?
+	print """
+	<form action="dashboard.py" method="get">
+	<input type="hidden" name="username" value="%s"></input>
+	<input type="submit" value="see your post!"></input>
+	</form>
+	""" % form.getvalue("username")

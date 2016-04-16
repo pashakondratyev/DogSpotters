@@ -50,8 +50,8 @@ int main(){
 /*	Here we have the username and password variables	*/
 	
 	printf("Content-type: text/html\n\n");
+
 /*	Check the users.txt for the username and password	*/	
-	 
 	if(validate_credentials(username, password) == 0){
 		FILE *f;
 		f = fopen("../login-error.html", "r");

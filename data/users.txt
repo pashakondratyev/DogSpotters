@@ -1,29 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-wizard
-harry potter
-poodle
-secondword
-Bob Smith
-coder
-paul
-pass
-=======
-doggodenis
-=======
->>>>>>> a0364db1f39c584ee8f9464b244b858306a357b8
-luca
-denis
-LUCA
-dog
-denis
-<<<<<<< HEAD
->>>>>>> 0d009f7b7c03cdc60b9f2d654bbc46b6d3df38ad
-=======
-japan
-DENIS
-snoop dog
-<<<<<<< HEAD
 doggo
 doggo
 doggo
@@ -32,6 +6,3 @@ paul
 paul
 paul
 paul
-=======
->>>>>>> a0364db1f39c584ee8f9464b244b858306a357b8
->>>>>>> b485aac1a01f333acb061ef42c3cd171526a985b

@@ -30,10 +30,7 @@ int searchForUser (char *user){
 		
 		if(strncmp(user, file_username, strlen(user)) == 0){
 			fclose(users);
-			printf("Username: %s \n",file_username);
-			printf("Name: %s \n", file_fullname);
-			printf("Favorite Dog: %s \n", file_favoritedog);
-			return 1;
+		return 1;
 		}		
 	}while(feof(users) == 0);	
 	fclose(users);
@@ -51,6 +48,9 @@ int main(){
 	printf("content-type: text/html\n\n");
 	printf("<!Doctype html>");
 	searchForUser(name);
+	printf("Username: %s \n",file_username);
+	printf("Name: %s \n", file_fullname);
+	printf("Favorite Dog: %s \n", file_favoritedog);
 	return 0;
 }
 

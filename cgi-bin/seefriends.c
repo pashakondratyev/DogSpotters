@@ -11,22 +11,22 @@ int listFriends(char* name){
 	if(fpointer == NULL){
 		printf("<p>Error: friends.txt failed to open</p>");
 	}
-	char *tempString;
-	char *userName;
+	char tempString[MAXLEN];
+	char userName[MAXLEN];
 	char *tempName;
 	printf("<form action=\"profile.cgi\" method=\"post\"><table>");
 	do{
 		fgets(tempString, MAXLEN * 100, fpointer);
 		if(strncmp(strtok(tempString," "),name, strlen(name)) == 0){
-			tempName = strtok(tempString," ");
+			strcpy( tempName, strtok(tempString," "));
 			while(tempName != NULL){
-				printf("<tr><td><input type=\"radio\" name=\"user\" value=\"%s\"></td><td>%s</td></tr>",tempName, tempName);
+				printf("<tr><td><input type=\"radio\" name=\"user\" value=\"%s\"></td><td>%s</input></td></tr>",tempName, tempName);
 				tempName = strtok(tempString," ");
 			}
 		}
 	}while(feof(fpointer)==0);
-	printf("<input type=\"hidden\" name=\"username\" value=\"%s\">",tempName);
-	printf("<input type=\"submit\" value=\"See profile!\">");
+	printf("<input type=\"hidden\" name=\"username\" value=\"%s\"></input>",tempName);
+	printf("<input type=\"submit\" value=\"See profile!\"></input>");
 	printf("</form>");
 	return 0;
 }
@@ -36,11 +36,13 @@ int main(){
 	char input[MAXINPUT];
 	char username[MAXLEN];
 	fgets(input, n+1, stdin);
-	printf("input: %s", input);
+//	printf("input: %s", input);
 	sscanf(input, "username=%[^&]", username);
 	unencode(username, username + strlen(username), username);
-	printf("Content-type: text/html\n\n");
+	printf("content-type: text/html\n\n");
+	printf("<!Doctype html>");
 	listFriends(username);
+	return 0;
 	/*
 
 choose one friend to view

@@ -47,10 +47,33 @@ int main(){
 	unencode(name, name + strlen(name), name);
 	printf("content-type: text/html\n\n");
 	printf("<!Doctype html>");
+	printf("<html> <body>");
 	searchForUser(name);
-	printf("Username: %s \n",file_username);
-	printf("Name: %s \n", file_fullname);
-	printf("Favorite Dog: %s \n", file_favoritedog);
+	printf("<p>Username: %s</p>",file_username);
+	printf("<p>Name: %s </p>", file_fullname);
+	printf("<p>Favorite Dog: %s </p>", file_favoritedog);
+	//Add a return button
+	
+	printf("<form action=\"seefriends.cgi\" method=\"post\">");
+	printf("<input type=\"hidden\" name=\"username\" value=\"%s\">", username);
+	printf("</input><input type=\"submit\" value=\"Go Back\"></input>");
+	printf("</form>");
+	printf("</body></html>");
+
+
+	// Put in the style sheet
+	FILE *fpointer;
+	fpointer = fopen("../profile.html", "r");
+	if(fpointer == NULL){
+		printf("<p>error</p>");
+	}
+	char c;
+	c = fgetc(fpointer);
+	while(feof(fpointer) == 0){
+		printf("%c",c);
+		c = fgetc(fpointer);
+	}
 	return 0;
+
 }
 

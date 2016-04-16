@@ -4,6 +4,8 @@ import cgitb
 cgitb.enable()
 form = cgi.FieldStorage()
 loggedInUser = form.getvalue("username")
+loggedInUser.replace("%0D%0A","")
+
 
 print "Content-Type:text/html\r\n\r\n"
 #Header of page
@@ -23,7 +25,7 @@ try:
 	users=open("../data/users.txt","r")
 	usersList = users.readlines()
 	index = 0
-	webpage += '<form action="newfriends.py" method="post"><table>'
+	webpage += '<form action="newfriends.py" method="get"><table>'
 	while index in range(0, len(usersList)):
 		username = usersList[index]
 		webpage += "<tr><td>" + username +"</td>"

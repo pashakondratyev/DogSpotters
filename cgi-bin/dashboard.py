@@ -70,7 +70,7 @@ try:
 		print "<p>%s</p>" % display
 
 except:
-	print "cannot open file"
+	print ""
 
 finally:
 	print"""

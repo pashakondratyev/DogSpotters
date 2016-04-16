@@ -5,7 +5,7 @@ all :
 	chmod 755 ../*
 	chmod 755 ../data/*
 
-profile.cgi : profile.c 
+profile.cgi : profile.c parse.h 	
 	gcc -g -o profile.cgi profile.c
 
 login.cgi : login.c parse.h

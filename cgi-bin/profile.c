@@ -39,6 +39,18 @@ int searchForUser (char *user){
 	fclose(users);
 	return 0;
 }
-/*int main(){
-	searchForUser("wizard");
-}*/
+int main(){
+	int n = atoi(getenv("CONTENT_LENGTH"));
+	char input[MAXINPUT];
+	char username[MAXLEN];
+	char name[MAXLEN];
+	fgets(input, n+1, stdin);
+	sscanf(input, "user=%[^&]&username=%[^&]", name, username);
+	unencode(username, username + strlen(username), username);
+	unencode(name, name + strlen(name), name);
+	printf("content-type: text/html\n\n");
+	printf("<!Doctype html>");
+	searchForUser(name);
+	return 0;
+}
+

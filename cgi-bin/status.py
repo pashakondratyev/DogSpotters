@@ -22,14 +22,11 @@ else:
 	print "<p>Status: %s</p>" % form.getvalue("status")
 	username = form.getvalue("username")
 	username = username.replace('\r','').replace('\n','')
-	try:
-		status_file = open("../status.html", "r")
-		for lines in status_file:
-			printf lines
-	except:
-		print "can't open the style sheet"
-	finally:
-		status_file.close()
+	print '''<style>
+body{
+background-color: linen;
+}
+</style>'''
 	try:
 		myfile = open("../data/status.txt", "a+")
 		myfile.write("%s %s\n" % (username, form.getvalue("status")))

@@ -20,9 +20,11 @@ else:
 #	print "<h4>something to show</h4>"
 	print "<p>User: %s</p>" % form.getvalue("username")
 	print "<p>Status: %s</p>" % form.getvalue("status")
+	username = form.getvalue("username")
+	username = username.replace('\r','').replace('\n','')
 	try:
 		myfile = open("../data/status.txt", "a+")
-		myfile.write("%s %s\n" % (form.getvalue("username"), form.getvalue("status")))
+		myfile.write("%s %s\n" % (username, form.getvalue("status")))
 	except IOError:
 		print "<p>Error opening file</p>"
 	except:
@@ -35,4 +37,4 @@ else:
 	<input type="hidden" name="username" value="%s"></input>
 	<input type="submit" value="see your post!"></input>
 	</form>
-	""" % form.getvalue("username")
+	""" % username

@@ -12,11 +12,12 @@ cgitb.enable()
 form = cgi.FieldStorage()
 if len(sys.argv) > 1:
 	username = sys.argv[1]
-
+	
 else:
 	print "Content-Type:text/html\r\n\r\n"
 	username = form.getvalue("username")
 
+username = username.replace('\n','').replace('\r','')
 def make_html():
 	print "<!Doctype html>\n<html><body>\n"
 	print """
@@ -37,7 +38,7 @@ def make_html():
 	</ul>
 	""" % (username, username )
 	print """
-	<form action="status.py" method="get">
+	<form action="status.py" method="post">
 	<input type="hidden" name="username" value="%s">
 	<textarea name="status" cols=40 rows=6></textarea>
 	</br>
@@ -54,7 +55,7 @@ try:
 	#Gets friendslist where 0th index is user
 	for line in friend_list:
 		splitLine = line.split()
-		if splitLine[0] == username:
+		if splitLine[0].replace('\n','').replace('\r','') == username.replace('\n','').replace('\r',''): 
 			break
 	friend_list = splitLine
 	status_file = open("../data/status.txt", "r")

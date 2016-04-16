@@ -63,7 +63,7 @@ int main(){
 
 	// Put in the style sheet
 	FILE *fpointer;
-	fpointer = fopen("../profile.html", "r");
+	fpointer = fopen("../style.html", "r");
 	if(fpointer == NULL){
 		printf("<p>error</p>");
 	}
@@ -73,6 +73,7 @@ int main(){
 		printf("%c",c);
 		c = fgetc(fpointer);
 	}
+	fclose(fpointer);
 	return 0;
 
 }

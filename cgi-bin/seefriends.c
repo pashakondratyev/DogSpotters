@@ -27,6 +27,7 @@ int listFriends(char* name){
 			}
 		}
 	}while(feof(fpointer)==0);
+	fclose(fpointer);
 	printf("<input type=\"hidden\" name=\"username\" value=\"%s\"></input>",name);
 	printf("<input type=\"submit\" value=\"See profile!\"></input>");
 	printf("</form>");
@@ -40,8 +41,9 @@ int main(){
 	char username2[MAXLEN];
 	fgets(input, n+1, stdin);
 	sscanf(input, "username=%[^&]", username);
-	strcpy(username2,username);		
 	unencode(username, username + strlen(username), username);
+	strcpy(username2,username);		
+//	printf("FORM-USERNAME: %s", username);
 	printf("content-type: text/html\n\n");
 	printf("<!Doctype html>");
 	listFriends(username);
@@ -50,6 +52,19 @@ int main(){
 	printf("<input type=\"submit\" value=\"Go back to the dashboard!\"></input>");
 	printf("</form>");
 	printf("</body>");
+	// make the style
+	FILE *fpointer;
+	fpointer = fopen("../style.html", "r");
+	if(fpointer == NULL){
+		printf("<p>error</p>");
+	}
+	char c;
+	c = fgetc(fpointer);
+	while(feof(fpointer) == 0){
+		printf("%c",c);
+		c = fgetc(fpointer);
+	}
+	fclose(fpointer);
 	printf("</html>");
 	return 0;
 }

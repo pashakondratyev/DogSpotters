@@ -72,4 +72,12 @@ try:
 except:
 	print "cannot open file"
 
+finally:
+	print"""
+	<style>
+	body{
+	background-color: linen;
+	}
+	</style>
+	"""
 print"</body></html>"

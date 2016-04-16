@@ -2,6 +2,7 @@
 #define EXTRA 10
 #define MAXINPUT MAXLEN+EXTRA
 #define USERFILE "../data/users.txt"
+#define FRIENDFILE "../data/friends.txt"
 #define VARLEN 8
 
 void unencode(char *src, char *last, char *dest)

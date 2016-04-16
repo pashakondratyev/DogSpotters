@@ -23,7 +23,7 @@ try:
 	users=open("../data/users.txt","r")
 	usersList = users.readlines()
 	index = 0
-	webpage += '<form action="newfriends.py" method="get"><table>'
+	webpage += '<form action="newfriends.py" method="post"><table>'
 	while index in range(0, len(usersList)):
 		username = usersList[index]
 		webpage += "<tr><td>" + username +"</td>"

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 wizard
 harry potter
 poodle
@@ -6,3 +7,21 @@ Bob Smith
 coder
 paul
 pass
+=======
+doggodenis
+luca
+chris
+denis
+doggopaul
+pass
+name
+dog
+paul
+paul
+paul
+Paul
+denis
+denis
+denis
+denis
+>>>>>>> 0d009f7b7c03cdc60b9f2d654bbc46b6d3df38ad

@@ -1,42 +1,45 @@
 #include <stdio.h>
+#include "parse.h"
 #include <stdlib.h>
-#include <strings.h>
+#include <string.h>
 
-int findFriends(char *myname){
+
+int listFriends(char *myname){
 /*lists all user names
 allows you to chose one and bring up their profile*/
 
 FILE *friends;
-int count=0;
-char ch;
-char *usernames[10];
+int MAXLEN=100;
+char username[MAXLEN];
 
 friends = fopen("../data/friends.txt","r");
 if(friends == NULL){
 	printf("<p>Error opening friend file</p>");
 }
-ch = fgetc(friends);
-while(!feof(friends)){
-	//get the usernames here
-	
-}
+
+char ch = fgetc(friends);
 if(ch == NULL){
         printf("LOL you have no friends. Go find some");
-    }   
+}
 
 
-	
-	fscanf(friends,"%s %s %s",usernames[0],usernames[1],usernames[2]);
-	printf("%s %s %s",usernames[0],usernames[1],usernames[2]);
+while(!feof(friends)){
+	fgets(username,MAXLEN,friends);
+	//get the usernames here
+	if(strncmp(myname, username, strlen(myname)) == 0){
+		printf(
+	}
 
-	/*if(ch =='\n'){
-    	break;
-	}*/
+}
 
 
 
 fclose(friends);
+return 0;
+}
 
+int main(){
+ 
 /*choose one friend to view*/
 printf("To view a friend enter their number here:");
 char *friend;

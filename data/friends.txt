@@ -1,2 +1,9 @@
+<<<<<<< HEAD
 wizard ron serena paul
 luca sheep owl
+=======
+doggodenis denis
+doggopaul
+denis
+paul
+>>>>>>> 0d009f7b7c03cdc60b9f2d654bbc46b6d3df38ad

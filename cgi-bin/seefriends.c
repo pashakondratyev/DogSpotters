@@ -5,7 +5,7 @@
 int listFriends(char* name){
 	/*lists all user names
 	allows you to chose one and bring up their profile*/
-
+	printf("NAME: %s", name);
 	FILE *fpointer;
 	fpointer = fopen("../data/friends.txt", "r");
 	if(fpointer == NULL){
@@ -17,8 +17,12 @@ int listFriends(char* name){
 	printf("<form action=\"profile.cgi\" method=\"post\"><table>");
 	do{
 		fgets(tempString, MAXLEN * 100, fpointer);
-		if(strncmp(strtok(tempString," "),name, strlen(name)) == 0){
-			strcpy( tempName, strtok(tempString," "));
+		printf("<p>TEMPSTRING: %s</p>", tempString);
+		strcpy(userName, strtok(tempString," "));
+		printf("USERNAME: %s", userName);
+		if(strncmp(userName, name, strlen(name)) == 0){
+			strcpy( tempName, strtok(NULL," "));
+			printf("TEMPNAME %s",tempName);
 			while(tempName != NULL){
 				printf("<tr><td><input type=\"radio\" name=\"user\" value=\"%s\"></td><td>%s</input></td></tr>",tempName, tempName);
 				tempName = strtok(tempString," ");
